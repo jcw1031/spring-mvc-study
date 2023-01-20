@@ -17,7 +17,7 @@ public class RequestParamServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("[ 전체 파라미터 조회 ] - Start");
+        System.out.println("[ 전체 파라미터 조회 ] - Start (사실 HTML Form 데이터도 가능 ㅋㅋ)");
 
         request.getParameterNames().asIterator().forEachRemaining(paramName ->
                 System.out.println(paramName +" = " + request.getParameter(paramName)));
