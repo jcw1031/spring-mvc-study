@@ -27,9 +27,7 @@ public class FrontControllerServletV4 extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String requestURI = request.getRequestURI();
-
-        ControllerV4 controller = controllerMap.get(requestURI);
+        ControllerV4 controller = controllerMap.get(request.getRequestURI());
         if (controller == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -44,7 +42,7 @@ public class FrontControllerServletV4 extends HttpServlet {
         myView.render(model, request, response);
     }
 
-    private static Map<String, String> createParamMap(HttpServletRequest request) {
+    private Map<String, String> createParamMap(HttpServletRequest request) {
         HashMap<String, String> paramMap = new HashMap<>();
         request.getParameterNames().asIterator().forEachRemaining(paramName -> {
             paramMap.put(paramName, request.getParameter(paramName));
@@ -53,7 +51,7 @@ public class FrontControllerServletV4 extends HttpServlet {
         return paramMap;
     }
 
-    private static MyView viewResolver(String viewName) {
+    private MyView viewResolver(String viewName) {
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
 }
