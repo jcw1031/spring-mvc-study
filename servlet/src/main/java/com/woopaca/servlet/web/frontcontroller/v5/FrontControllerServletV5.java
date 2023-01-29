@@ -2,14 +2,7 @@ package com.woopaca.servlet.web.frontcontroller.v5;
 
 import com.woopaca.servlet.web.frontcontroller.ModelView;
 import com.woopaca.servlet.web.frontcontroller.MyView;
-import com.woopaca.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
-import com.woopaca.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
-import com.woopaca.servlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
-import com.woopaca.servlet.web.frontcontroller.v4.controller.MemberFormControllerV4;
-import com.woopaca.servlet.web.frontcontroller.v4.controller.MemberListControllerV4;
-import com.woopaca.servlet.web.frontcontroller.v4.controller.MemberSaveControllerV4;
-import com.woopaca.servlet.web.frontcontroller.v5.adapter.ControllerV3HandlerAdapter;
-import com.woopaca.servlet.web.frontcontroller.v5.adapter.ControllerV4HandlerAdapter;
+import com.woopaca.servlet.web.frontcontroller.v5.config.HandlerConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +22,10 @@ public class FrontControllerServletV5 extends HttpServlet {
     private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>();
 
     public FrontControllerServletV5() {
-        initHandlerMappingMap();
-        initHandlerAdapters();
+        HandlerConfig handlerConfig = new HandlerConfig();
+
+        handlerConfig.configureHandlerMappingMap(handlerMappingMap);
+        handlerConfig.configureHandlerAdapters(handlerAdapters);
     }
 
     @Override
@@ -51,7 +46,7 @@ public class FrontControllerServletV5 extends HttpServlet {
         myView.render(modelView.getModel(), request, response);
     }
 
-    private void initHandlerMappingMap() {
+    /*private void initHandlerMappingMap() {
         handlerMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
@@ -64,7 +59,7 @@ public class FrontControllerServletV5 extends HttpServlet {
     private void initHandlerAdapters() {
         handlerAdapters.add(new ControllerV3HandlerAdapter());
         handlerAdapters.add(new ControllerV4HandlerAdapter());
-    }
+    }*/
 
     private Object getHandler(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
