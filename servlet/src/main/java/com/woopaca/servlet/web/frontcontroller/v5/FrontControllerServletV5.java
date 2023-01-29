@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "frontControllerServletV5", urlPatterns = "/front-controller/v5/*")
 public class FrontControllerServletV5 extends HttpServlet {
 
-    private final Map<String, Object> handlerMappingMap = new HashMap<>();
-    private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>();
+    private final Map<String, Object> handlerMappingMap;
+    private final List<MyHandlerAdapter> handlerAdapters;
 
     public FrontControllerServletV5() {
         HandlerConfig handlerConfig = new HandlerConfig();
 
-        handlerConfig.configureHandlerMappingMap(handlerMappingMap);
-        handlerConfig.configureHandlerAdapters(handlerAdapters);
+        this.handlerMappingMap = handlerConfig.handlerMappingMap();
+        this.handlerAdapters = handlerConfig.handlerAdapters();
     }
 
     @Override
