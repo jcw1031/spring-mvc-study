@@ -17,16 +17,18 @@ import java.util.Map;
 
 public class HandlerConfig {
 
+    public static final String PREFIX = "/front-controller/v5";
+
     public Map<String, Object> handlerMappingMap() {
         Map<String, Object> handlerMappingMap = new HashMap<>();
 
-        handlerMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
-        handlerMappingMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
-        handlerMappingMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
+        handlerMappingMap.put(PREFIX + "/v3/members/new-form", new MemberFormControllerV3());
+        handlerMappingMap.put(PREFIX + "/v3/members/save", new MemberSaveControllerV3());
+        handlerMappingMap.put(PREFIX + "/v3/members", new MemberListControllerV3());
 
-        handlerMappingMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
-        handlerMappingMap.put("/front-controller/v5/v4/members/save", new MemberSaveControllerV4());
-        handlerMappingMap.put("/front-controller/v5/v4/members", new MemberListControllerV4());
+        handlerMappingMap.put(PREFIX + "/v4/members/new-form", new MemberFormControllerV4());
+        handlerMappingMap.put(PREFIX + "/v4/members/save", new MemberSaveControllerV4());
+        handlerMappingMap.put(PREFIX + "/v4/members", new MemberListControllerV4());
 
         return handlerMappingMap;
     }

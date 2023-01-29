@@ -15,7 +15,7 @@ public class ControllerV4HandlerAdapter implements MyHandlerAdapter {
 
     @Override
     public boolean isSupport(Object handler) {
-        return handler instanceof ControllerV4;
+        return (handler instanceof ControllerV4);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class ControllerV3HandlerAdapter implements MyHandlerAdapter {
     // 해당 Controller를 지원하는지 판단
     @Override
     public boolean isSupport(Object handler) {
-        return handler instanceof ControllerV3;
+        return (handler instanceof ControllerV3);
     }
 
     //
