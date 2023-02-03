@@ -1,8 +1,10 @@
 package com.woopaca.springmvc.basic.request;
 
+import com.woopaca.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,6 +77,20 @@ public class RequestParamController {
     @RequestMapping("/request-param-multi-map") // MultiValueMap은 하나의 키에 값이 여러 개인 경우 사용
     public String requestParamMultiValueMap(@RequestParam MultiValueMap<String, Object> paramMap) {
         log.info("username = {}, age = {}", paramMap.get("username"), paramMap.get("age"));
+        return "OK";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) {
+        log.info("helloData = {}", helloData);
+        return "OK";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2") // @ModelAttribute 생략 가능
+    public String modelAttributeV2(HelloData helloData) {
+        log.info("helloData = {}", helloData);
         return "OK";
     }
 }
