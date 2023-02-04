@@ -1,3 +1,4 @@
 logging:
   level:
     com.woopaca.springmvc: debug
+    org.apache.coyote.http11: debug
