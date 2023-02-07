@@ -18,7 +18,8 @@ public class ItemRepository {
 
     public Item save(Item item) {
         item.setId(++sequence);
-        return store.put(item.getId(), item);
+        store.put(item.getId(), item);
+        return item;
     }
 
     public Optional<Item> findById(Long id) {

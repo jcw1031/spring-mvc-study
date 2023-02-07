@@ -1,13 +1,14 @@
 package com.woopaca.itemservice.domain.item;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Getter
+@Getter @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Item {
 
     private Long id;
