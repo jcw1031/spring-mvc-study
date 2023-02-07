@@ -22,4 +22,8 @@ public class Item {
         this.itemPrice = itemPrice;
         this.quantity = quantity;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
