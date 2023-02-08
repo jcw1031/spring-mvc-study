@@ -30,7 +30,7 @@
     </div>
     <div>
         <label for="price">가격</label>
-        <input type="text" id="price" name="price" class="form-control" th:value="${item.itemPrice}"
+        <input type="text" id="price" name="price" class="form-control" th:value="${item.price}"
                value="10000" readonly>
     </div>
     <div>
@@ -49,7 +49,8 @@
             </button>
         </div>
         <div class="col">
-            <button class="w-100 btn btn-secondary btn-lg" th:onclick="|location.href='@{/basic/items}'|"
+            <button class="w-100 btn btn-secondary btn-lg"
+                    th:onclick="|location.href='@{/basic/items}'|"
                     onclick="location.href='items.html'" type="button">목록으로
             </button>
         </div>

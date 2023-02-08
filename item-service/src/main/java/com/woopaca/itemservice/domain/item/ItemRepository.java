@@ -34,7 +34,7 @@ public class ItemRepository {
     public void update(Long id, Item updateParam) {
         Item findItem = findById(id).orElseThrow(NoSuchElementException::new);
         findItem.setItemName(updateParam.getItemName());
-        findItem.setItemPrice(updateParam.getItemPrice());
+        findItem.setPrice(updateParam.getPrice());
         findItem.setQuantity(updateParam.getQuantity());
     }
 

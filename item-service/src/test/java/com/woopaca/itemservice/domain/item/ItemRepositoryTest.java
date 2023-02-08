@@ -87,7 +87,7 @@ class ItemRepositoryTest {
         Item findItem = itemRepository.findById(itemId).orElse(null);
 
         assertThat(findItem.getItemName()).isEqualTo(updateItem.getItemName());
-        assertThat(findItem.getItemPrice()).isEqualTo(updateItem.getItemPrice());
+        assertThat(findItem.getPrice()).isEqualTo(updateItem.getPrice());
         assertThat(findItem.getQuantity()).isEqualTo(updateItem.getQuantity());
     }
 }

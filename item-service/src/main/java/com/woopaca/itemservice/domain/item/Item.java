@@ -13,14 +13,14 @@ public class Item {
 
     private Long id;
     private String itemName;
-    private Integer itemPrice;
+    private Integer price;
     private Integer quantity;
 
     @Builder
-    public Item(Long id, String itemName, Integer itemPrice, Integer quantity) {
+    public Item(Long id, String itemName, Integer price, Integer quantity) {
         this.id = id;
         this.itemName = itemName;
-        this.itemPrice = itemPrice;
+        this.price = price;
         this.quantity = quantity;
     }
 
