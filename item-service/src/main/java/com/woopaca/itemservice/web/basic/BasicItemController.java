@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -59,10 +60,18 @@ public class BasicItemController {
     // @ModelAttribute는 Model 객체를 만들고, "item"이라는 이름으로 Model에 객체를 담는다.
     // ("item")은 클래스 이름의 맨 앞 글자만 소문자로 바꾼 것과 같기 때문에 생략 가능하다.
     // @ModelAttribute도 생략 가능하다.
-    @PostMapping("/add")
+    /*@PostMapping("/add")
     public String save(@ModelAttribute("item") Item item) {
         Item savedItem = itemRepository.save(item);
         return "redirect:/basic/items/" + item.getId();
+    }*/
+
+    @PostMapping("/add")
+    public String save(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/basic/items/{itemId}";
     }
 
     @GetMapping("/{itemId}/edit")
