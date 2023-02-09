@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -62,9 +60,22 @@ public class BasicItemController {
     // ("item")은 클래스 이름의 맨 앞 글자만 소문자로 바꾼 것과 같기 때문에 생략 가능하다.
     // @ModelAttribute도 생략 가능하다.
     @PostMapping("/add")
-    public void save(@ModelAttribute("item") Item item, HttpServletResponse response)
-            throws IOException {
+    public String save(@ModelAttribute("item") Item item) {
         Item savedItem = itemRepository.save(item);
-        response.sendRedirect("/basic/items/" + savedItem.getId());
+        return "redirect:/basic/items/" + item.getId();
+    }
+
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId).orElseThrow(() ->
+                new IllegalArgumentException("회원 없음"));
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
+
+    @PostMapping("/{itemId}/edit")
+    public String update(@PathVariable Long itemId, @ModelAttribute Item item) {
+        itemRepository.update(itemId, item);
+        return "redirect:/basic/items/{itemId}"; // PathVariable의 값을 사용 가능
     }
 }
