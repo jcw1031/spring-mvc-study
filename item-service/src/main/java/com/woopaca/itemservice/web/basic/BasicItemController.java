@@ -69,8 +69,8 @@ public class BasicItemController {
     @PostMapping("/add")
     public String save(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
         Item savedItem = itemRepository.save(item);
-        redirectAttributes.addAttribute("itemId", savedItem.getId());
-        redirectAttributes.addAttribute("status", true);
+        redirectAttributes.addAttribute("itemId", savedItem.getId()); // redirect path variable로 사용
+        redirectAttributes.addAttribute("status", true); // redirect 페이지에서 사용
         return "redirect:/basic/items/{itemId}";
     }
 
